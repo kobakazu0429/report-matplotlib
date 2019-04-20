@@ -50,8 +50,7 @@ y1 = df[y1Column]
 y2 = df[y2Column]
 
 # インチ指定
-# fig = plt.figure(figsize=(10, 10))
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(10, 10))
 ax2 = ax1.twinx()
 
 # ax1.grid(True)
@@ -65,7 +64,7 @@ ax1.set_ylabel(y1Column, fontdict={"fontproperties": en}, fontsize=12)
 ax2.set_ylabel(y2Column, fontdict={"fontproperties": en}, fontsize=12)
 
 ax1.yaxis.set_label_coords(-0.1, 0.5)
-ax2.yaxis.set_label_coords(0.1, 0.5)
+# ax2.yaxis.set_label_coords(0, 0.5)
 
 ax1.scatter(x, y1)
 ax2.scatter(x, y2, color='orange')
