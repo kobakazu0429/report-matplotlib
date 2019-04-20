@@ -42,16 +42,18 @@ df = pd.read_excel(filepath)  # Pandas DataFrameに読込み
 # y=df[[1]]
 
 #ラベルで指定する場合
-x = df['X']
-y = df['Y']
+xColumn = df.columns[0]
+yColumn = df.columns[1]
+x = df[xColumn]
+y = df[yColumn]
 
 # インチ指定
 fig = plt.figure(figsize=(7, 7))
 
 ax = fig.add_subplot(111)
 
-ax.set_xlabel("$V_F$", fontdict={"fontproperties": en}, fontsize=12)
-ax.set_ylabel("$I_F$", fontdict={"fontproperties": en}, fontsize=12)
+ax.set_xlabel(xColumn, fontdict={"fontproperties": en}, fontsize=12)
+ax.set_ylabel(yColumn, fontdict={"fontproperties": en}, fontsize=12)
 
 ax.yaxis.set_label_coords(-0.1, 0.5)
 
