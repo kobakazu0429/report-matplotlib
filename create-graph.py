@@ -11,6 +11,25 @@ en = FontProperties(
 jp = FontProperties(
     fname="./font.ttc")
 
+FONT_SIZE = 18
+
+# ‘best’
+# ‘upper right’
+# ‘upper left’
+# ‘lower left’
+# ‘lower right’
+# ‘right’
+# ‘center left’
+# ‘center right’
+# ‘lower center’
+# ‘upper center’
+# ‘center’
+
+LOC = 'best'
+
+# フォントサイズ
+plt.rcParams["font.size"] = FONT_SIZE
+
 # x軸の目盛線が内向き('in')か外向き('out')か双方向か('inout')
 plt.rcParams['xtick.direction'] = 'in'
 
@@ -26,9 +45,6 @@ plt.rcParams['ytick.major.width'] = 1.0
 # 軸の線幅edge linewidth。囲みの太さ
 plt.rcParams['axes.linewidth'] = 1.0
 plt.rcParams['axes.grid'] = True
-
-
-pi = math.pi  # mathモジュールのπを利用
 
 filepath = './data.xlsx'  # Xlsファイルの場所
 
@@ -48,14 +64,17 @@ x = df[xColumn]
 y = df[yColumn]
 
 # インチ指定
-fig = plt.figure(figsize=(7, 7))
+fig = plt.figure(figsize=(8, 8))
+fig.subplots_adjust(left=0.2)
 
 ax = fig.add_subplot(111)
 
-ax.set_xlabel(xColumn, fontdict={"fontproperties": en}, fontsize=12)
-ax.set_ylabel(yColumn, fontdict={"fontproperties": en}, fontsize=12)
+ax.set_xlabel(xColumn, fontdict={"fontproperties": en}, fontsize=FONT_SIZE+2)
+ax.set_ylabel(yColumn, fontdict={"fontproperties": en}, fontsize=FONT_SIZE+2)
 
 ax.yaxis.set_label_coords(-0.1, 0.5)
+
+ax.set_axisbelow(True)
 
 # y軸小数点以下3桁表示
 plt.gca().yaxis.set_major_formatter(plt.FormatStrFormatter('%.3f'))
@@ -71,5 +90,9 @@ plt.locator_params(axis='y', nbins=6)
 
 plt.scatter(x, y)
 # plt.xticks(x, x)
+
+# 凡例をまとめて出力する
+handler, label = ax.get_legend_handles_labels()
+ax.legend(handler, label, loc=LOC, borderaxespad=0.)
 
 plt.savefig("output.png")

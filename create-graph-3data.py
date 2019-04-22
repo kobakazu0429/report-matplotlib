@@ -11,6 +11,25 @@ en = FontProperties(
 jp = FontProperties(
     fname="./font.ttc")
 
+FONT_SIZE = 18
+
+# ‘best’
+# ‘upper right’
+# ‘upper left’
+# ‘lower left’
+# ‘lower right’
+# ‘right’
+# ‘center left’
+# ‘center right’
+# ‘lower center’
+# ‘upper center’
+# ‘center’
+
+LOC = 'best'
+
+# フォントサイズ
+plt.rcParams["font.size"] = FONT_SIZE
+
 # x軸の目盛線が内向き('in')か外向き('out')か双方向か('inout')
 plt.rcParams['xtick.direction'] = 'in'
 
@@ -51,6 +70,7 @@ y2 = df[y2Column]
 
 # インチ指定
 fig, ax1 = plt.subplots(figsize=(10, 10))
+fig.subplots_adjust(left=0.2)
 ax2 = ax1.twinx()
 
 # ax1.grid(True)
@@ -59,9 +79,9 @@ ax2 = ax1.twinx()
 ax1.set_axisbelow(True)
 ax2.set_axisbelow(True)
 
-ax1.set_xlabel(xColumn, fontdict={"fontproperties": en}, fontsize=12)
-ax1.set_ylabel(y1Column, fontdict={"fontproperties": en}, fontsize=12)
-ax2.set_ylabel(y2Column, fontdict={"fontproperties": en}, fontsize=12)
+ax1.set_xlabel(xColumn, fontdict={"fontproperties": en}, fontsize=FONT_SIZE+2)
+ax1.set_ylabel(y1Column, fontdict={"fontproperties": en}, fontsize=FONT_SIZE+2)
+ax2.set_ylabel(y2Column, fontdict={"fontproperties": en}, fontsize=FONT_SIZE+2)
 
 ax1.yaxis.set_label_coords(-0.1, 0.5)
 # ax2.yaxis.set_label_coords(0, 0.5)
@@ -80,5 +100,12 @@ plt.gca().xaxis.get_major_formatter().set_useOffset(False)
 
 # 軸目盛りの個数指定: y軸, 6個以内
 plt.locator_params(axis='y', nbins=6)
+
+# 凡例をまとめて出力する
+handler1, label1 = ax1.get_legend_handles_labels()
+handler2, label2 = ax2.get_legend_handles_labels()
+
+plt.legend(handler1 + handler2,
+           label1 + label2, bbox_to_anchor=(1, 1), loc=LOC, borderaxespad=0, fontsize=FONT_SIZE)
 
 plt.savefig("output.png")
