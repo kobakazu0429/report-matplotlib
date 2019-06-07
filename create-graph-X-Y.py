@@ -64,7 +64,7 @@ x = df[xColumn]
 y = df[yColumn]
 
 # インチ指定
-fig = plt.figure(figsize=(8, 8))
+fig = plt.figure(figsize=(12, 10))
 fig.subplots_adjust(left=0.2)
 
 ax = fig.add_subplot(111)

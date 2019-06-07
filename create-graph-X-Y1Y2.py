@@ -69,8 +69,8 @@ y1 = df[y1Column]
 y2 = df[y2Column]
 
 # インチ指定
-fig, ax1 = plt.subplots(figsize=(10, 10))
-fig.subplots_adjust(left=0.2)
+fig, ax1 = plt.subplots(figsize=(12, 10))
+fig.subplots_adjust(left=0.1)
 ax2 = ax1.twinx()
 
 # ax1.grid(True)
@@ -108,4 +108,4 @@ handler2, label2 = ax2.get_legend_handles_labels()
 plt.legend(handler1 + handler2,
            label1 + label2, bbox_to_anchor=(1, 1), loc=LOC, borderaxespad=0, fontsize=FONT_SIZE)
 
-plt.savefig("output.png")
+plt.savefig("output.png", bbox_inches='tight', dpi=100)
