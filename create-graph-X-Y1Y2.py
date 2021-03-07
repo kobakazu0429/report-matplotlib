@@ -46,9 +46,6 @@ plt.rcParams['ytick.major.width'] = 1.0
 plt.rcParams['axes.linewidth'] = 1.0
 plt.rcParams['axes.grid'] = True
 
-
-pi = math.pi  # mathモジュールのπを利用
-
 filepath = './data.xlsx'  # Xlsファイルの場所
 
 pd.options.display.precision = 3
